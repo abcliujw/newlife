@@ -1,33 +1,46 @@
 package com.newlife.fitness.entity;
 
-public class UserCourse {
-    private Integer id;
+import java.io.Serializable;
 
-    private Integer userId;
+/**
+ *	用户课程中间类
+ *	一行记录 -- 对应 --> 一个课程，一个用户。
+ *	多对多
+ */
+public class UserCourse implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private Integer courseId;
+	private int id;
 
-    public Integer getId() {
-        return id;
-    }
+	private Course course;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private FUser FUser;
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public UserCourse() {
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public Integer getCourseId() {
-        return courseId;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
-    }
+	public Course getCourse() {
+		return this.course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public FUser getFUser() {
+		return this.FUser;
+	}
+
+	public void setFUser(FUser FUser) {
+		this.FUser = FUser;
+	}
+
 }

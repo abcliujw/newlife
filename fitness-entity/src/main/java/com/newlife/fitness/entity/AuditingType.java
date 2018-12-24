@@ -1,23 +1,81 @@
 package com.newlife.fitness.entity;
 
-public class AuditingType {
-    private Integer id;
+import java.io.Serializable;
+import java.util.List;
 
-    private String violationname;
+/**
+ * 审核类型类
+ * 记录评论是否违规
+ * AuditingType  -- 一对多 -- Comment（评论） && Forum（帖子）
+ */
+public class AuditingType implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private int id;
+	private String violationName;
+	
+	private List<Comments> comments;
+	private List<Forum> forums;
 
-    public Integer getId() {
-        return id;
-    }
+	public AuditingType() {
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public String getViolationname() {
-        return violationname;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setViolationname(String violationname) {
-        this.violationname = violationname == null ? null : violationname.trim();
-    }
+	public String getViolationName() {
+		return this.violationName;
+	}
+
+	public void setViolationName(String violationName) {
+		this.violationName = violationName;
+	}
+
+	public List<Comments> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comments> comments) {
+		this.comments = comments;
+	}
+
+	public Comments addComment(Comments comment) {
+		getComments().add(comment);
+		comment.setAuditingType(this);
+
+		return comment;
+	}
+
+	public Comments removeComment(Comments comment) {
+		getComments().remove(comment);
+		comment.setAuditingType(null);
+
+		return comment;
+	}
+
+	public List<Forum> getForums() {
+		return this.forums;
+	}
+
+	public void setForums(List<Forum> forums) {
+		this.forums = forums;
+	}
+
+	public Forum addForum(Forum forum) {
+		getForums().add(forum);
+		forum.setAuditingType(this);
+		return forum;
+	}
+
+	public Forum removeForum(Forum forum) {
+		getForums().remove(forum);
+		forum.setAuditingType(null);
+
+		return forum;
+	}
+
 }

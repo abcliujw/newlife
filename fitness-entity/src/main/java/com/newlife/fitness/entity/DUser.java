@@ -1,83 +1,95 @@
 package com.newlife.fitness.entity;
 
-public class DUser {
-    private Integer id;
+import java.io.Serializable;
 
-    private String dUsername;
+/**
+ * 后台管理员类
+ * 没啥关联性
+ */
+public class DUser implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private String dLoginname;
+	private int id;
 
-    private String dPassword;
+	private String dEmail;
 
-    private String dSex;
+	private String d_imgUrl;
 
-    private String dEmail;
+	private String d_loginName;
 
-    private String dPhone;
+	private String d_passWord;
 
-    private String dImgurl;
+	private String dPhone;
 
-    public Integer getId() {
-        return id;
-    }
+	private String dSex;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private String d_userName;
 
-    public String getdUsername() {
-        return dUsername;
-    }
+	public DUser() {
+	}
 
-    public void setdUsername(String dUsername) {
-        this.dUsername = dUsername == null ? null : dUsername.trim();
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public String getdLoginname() {
-        return dLoginname;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setdLoginname(String dLoginname) {
-        this.dLoginname = dLoginname == null ? null : dLoginname.trim();
-    }
+	public String getDEmail() {
+		return this.dEmail;
+	}
 
-    public String getdPassword() {
-        return dPassword;
-    }
+	public void setDEmail(String dEmail) {
+		this.dEmail = dEmail;
+	}
 
-    public void setdPassword(String dPassword) {
-        this.dPassword = dPassword == null ? null : dPassword.trim();
-    }
+	public String getD_imgUrl() {
+		return this.d_imgUrl;
+	}
 
-    public String getdSex() {
-        return dSex;
-    }
+	public void setD_imgUrl(String d_imgUrl) {
+		this.d_imgUrl = d_imgUrl;
+	}
 
-    public void setdSex(String dSex) {
-        this.dSex = dSex == null ? null : dSex.trim();
-    }
+	public String getD_loginName() {
+		return this.d_loginName;
+	}
 
-    public String getdEmail() {
-        return dEmail;
-    }
+	public void setD_loginName(String d_loginName) {
+		this.d_loginName = d_loginName;
+	}
 
-    public void setdEmail(String dEmail) {
-        this.dEmail = dEmail == null ? null : dEmail.trim();
-    }
+	public String getD_passWord() {
+		return this.d_passWord;
+	}
 
-    public String getdPhone() {
-        return dPhone;
-    }
+	public void setD_passWord(String d_passWord) {
+		this.d_passWord = d_passWord;
+	}
 
-    public void setdPhone(String dPhone) {
-        this.dPhone = dPhone == null ? null : dPhone.trim();
-    }
+	public String getDPhone() {
+		return this.dPhone;
+	}
 
-    public String getdImgurl() {
-        return dImgurl;
-    }
+	public void setDPhone(String dPhone) {
+		this.dPhone = dPhone;
+	}
 
-    public void setdImgurl(String dImgurl) {
-        this.dImgurl = dImgurl == null ? null : dImgurl.trim();
-    }
+	public String getDSex() {
+		return this.dSex;
+	}
+
+	public void setDSex(String dSex) {
+		this.dSex = dSex;
+	}
+
+	public String getD_userName() {
+		return this.d_userName;
+	}
+
+	public void setD_userName(String d_userName) {
+		this.d_userName = d_userName;
+	}
+
 }

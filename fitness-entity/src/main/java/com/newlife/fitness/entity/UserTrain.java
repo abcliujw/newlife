@@ -1,43 +1,56 @@
 package com.newlife.fitness.entity;
 
-public class UserTrain {
-    private Integer id;
+import java.io.Serializable;
 
-    private Integer userId;
+/**
+ *	用户教练中间类
+ *	一个ID记录 -- 对应 --> 一位教练、一个用户。
+ *	多对多
+ */
+public class UserTrain implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private Integer trainId;
+	private int id;
 
-    private String userMassage;
+	private String userMassage;
 
-    public Integer getId() {
-        return id;
-    }
+	private FUser FUser;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private Train train;
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public UserTrain() {
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public Integer getTrainId() {
-        return trainId;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setTrainId(Integer trainId) {
-        this.trainId = trainId;
-    }
+	public String getUserMassage() {
+		return this.userMassage;
+	}
 
-    public String getUserMassage() {
-        return userMassage;
-    }
+	public void setUserMassage(String userMassage) {
+		this.userMassage = userMassage;
+	}
 
-    public void setUserMassage(String userMassage) {
-        this.userMassage = userMassage == null ? null : userMassage.trim();
-    }
+	public FUser getFUser() {
+		return this.FUser;
+	}
+
+	public void setFUser(FUser FUser) {
+		this.FUser = FUser;
+	}
+
+	public Train getTrain() {
+		return this.train;
+	}
+
+	public void setTrain(Train train) {
+		this.train = train;
+	}
+
 }

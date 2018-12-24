@@ -1,43 +1,55 @@
 package com.newlife.fitness.entity;
 
-public class CourseVideo {
-    private Integer id;
+import java.io.Serializable;
 
-    private String title;
+/**
+ * 课程视频类
+ * courseVideo -- 多对一 -- course（课程）
+ */
+public class CourseVideo implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private String videoUrl;
+	private int id;
 
-    private Integer courseId;
+	private String title;
 
-    public Integer getId() {
-        return id;
-    }
+	private String videoUrl;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private Course course;
 
-    public String getTitle() {
-        return title;
-    }
+	public CourseVideo() {
+	}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl == null ? null : videoUrl.trim();
-    }
+	public String getTitle() {
+		return this.title;
+	}
 
-    public Integer getCourseId() {
-        return courseId;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
-    }
+	public String getVideoUrl() {
+		return this.videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
+	}
+
+	public Course getCourse() {
+		return this.course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
 }

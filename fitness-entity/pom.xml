@@ -5,7 +5,5 @@
     <artifactId>fitness-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.newlife.fitness</groupId>
   <artifactId>fitness-entity</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
 </project>

@@ -1,75 +1,113 @@
 package com.newlife.fitness.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class Forum {
-    private Integer id;
+/**
+ *	发帖类
+ *	Forum -- 一对多 -- Comment			（评论类）
+ *	Forum -- 多对一 -- AuditingType		（审核类型）
+ *	Forum -- 多对一 -- FUser			（用户表）
+ */
+public class Forum implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    private Integer userId;
+	private int id;
 
-    private String title;
+	private String content;
 
-    private String content;
+	private String isAdopt;
 
-    private Date postingtime;
+	private Date postingTime;
 
-    private String isadopt;
+	private String title;
 
-    private Integer auditingId;
+	private List<Comments> comments;
 
-    public Integer getId() {
-        return id;
-    }
+	private AuditingType auditingType;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private FUser FUser;
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public Forum() {
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
+	public String getContent() {
+		return this.content;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
+	public String getIsAdopt() {
+		return this.isAdopt;
+	}
 
-    public Date getPostingtime() {
-        return postingtime;
-    }
+	public void setIsAdopt(String isAdopt) {
+		this.isAdopt = isAdopt;
+	}
 
-    public void setPostingtime(Date postingtime) {
-        this.postingtime = postingtime;
-    }
+	public Date getPostingTime() {
+		return this.postingTime;
+	}
 
-    public String getIsadopt() {
-        return isadopt;
-    }
+	public void setPostingTime(Date postingTime) {
+		this.postingTime = postingTime;
+	}
 
-    public void setIsadopt(String isadopt) {
-        this.isadopt = isadopt == null ? null : isadopt.trim();
-    }
+	public String getTitle() {
+		return this.title;
+	}
 
-    public Integer getAuditingId() {
-        return auditingId;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setAuditingId(Integer auditingId) {
-        this.auditingId = auditingId;
-    }
+	public List<Comments> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(List<Comments> comments) {
+		this.comments = comments;
+	}
+
+	public Comments addComment(Comments comment) {
+		getComments().add(comment);
+		comment.setForum(this);
+
+		return comment;
+	}
+
+	public Comments removeComment(Comments comment) {
+		getComments().remove(comment);
+		comment.setForum(null);
+
+		return comment;
+	}
+
+	public AuditingType getAuditingType() {
+		return this.auditingType;
+	}
+
+	public void setAuditingType(AuditingType auditingType) {
+		this.auditingType = auditingType;
+	}
+
+	public FUser getFUser() {
+		return this.FUser;
+	}
+
+	public void setFUser(FUser FUser) {
+		this.FUser = FUser;
+	}
+
 }

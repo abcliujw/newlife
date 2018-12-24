@@ -5,7 +5,6 @@
     <artifactId>fitness-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.newlife.fitness</groupId>
   <artifactId>fitness-rearend</artifactId>
   <packaging>pom</packaging>
   <modules>
