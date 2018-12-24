@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlife.fitness.frontend.dao.TrainMapper">
+  <resultMap id="BaseResultMap" type="com.newlife.fitness.entity.Train">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="t_userName" jdbcType="VARCHAR" property="tUsername" />
+    <result column="t_loginName" jdbcType="VARCHAR" property="tLoginname" />
+    <result column="t_password" jdbcType="VARCHAR" property="tPassword" />
+    <result column="t_sex" jdbcType="CHAR" property="tSex" />
+    <result column="t_age" jdbcType="INTEGER" property="tAge" />
+    <result column="t_address" jdbcType="VARCHAR" property="tAddress" />
+    <result column="t_email" jdbcType="VARCHAR" property="tEmail" />
+    <result column="t_phone" jdbcType="CHAR" property="tPhone" />
+    <result column="t_isVip" jdbcType="CHAR" property="tIsvip" />
+    <result column="t_imgUrl" jdbcType="VARCHAR" property="tImgurl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, t_userName, t_loginName, t_password, t_sex, t_age, t_address, t_email, t_phone, 
+    t_isVip, t_imgUrl
+  </sql>
+  <select id="selectByExample" parameterType="com.newlife.fitness.entity.TrainExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from train
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from train
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from train
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.newlife.fitness.entity.TrainExample">
+    delete from train
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.newlife.fitness.entity.Train">
+    insert into train (id, t_userName, t_loginName, 
+      t_password, t_sex, t_age, 
+      t_address, t_email, t_phone, 
+      t_isVip, t_imgUrl)
+    values (#{id,jdbcType=INTEGER}, #{tUsername,jdbcType=VARCHAR}, #{tLoginname,jdbcType=VARCHAR}, 
+      #{tPassword,jdbcType=VARCHAR}, #{tSex,jdbcType=CHAR}, #{tAge,jdbcType=INTEGER}, 
+      #{tAddress,jdbcType=VARCHAR}, #{tEmail,jdbcType=VARCHAR}, #{tPhone,jdbcType=CHAR}, 
+      #{tIsvip,jdbcType=CHAR}, #{tImgurl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newlife.fitness.entity.Train">
+    insert into train
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tUsername != null">
+        t_userName,
+      </if>
+      <if test="tLoginname != null">
+        t_loginName,
+      </if>
+      <if test="tPassword != null">
+        t_password,
+      </if>
+      <if test="tSex != null">
+        t_sex,
+      </if>
+      <if test="tAge != null">
+        t_age,
+      </if>
+      <if test="tAddress != null">
+        t_address,
+      </if>
+      <if test="tEmail != null">
+        t_email,
+      </if>
+      <if test="tPhone != null">
+        t_phone,
+      </if>
+      <if test="tIsvip != null">
+        t_isVip,
+      </if>
+      <if test="tImgurl != null">
+        t_imgUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tUsername != null">
+        #{tUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="tLoginname != null">
+        #{tLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="tPassword != null">
+        #{tPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        #{tSex,jdbcType=CHAR},
+      </if>
+      <if test="tAge != null">
+        #{tAge,jdbcType=INTEGER},
+      </if>
+      <if test="tAddress != null">
+        #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tEmail != null">
+        #{tEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null">
+        #{tPhone,jdbcType=CHAR},
+      </if>
+      <if test="tIsvip != null">
+        #{tIsvip,jdbcType=CHAR},
+      </if>
+      <if test="tImgurl != null">
+        #{tImgurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.newlife.fitness.entity.TrainExample" resultType="java.lang.Long">
+    select count(*) from train
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update train
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.tUsername != null">
+        t_userName = #{record.tUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tLoginname != null">
+        t_loginName = #{record.tLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPassword != null">
+        t_password = #{record.tPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tSex != null">
+        t_sex = #{record.tSex,jdbcType=CHAR},
+      </if>
+      <if test="record.tAge != null">
+        t_age = #{record.tAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.tAddress != null">
+        t_address = #{record.tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tEmail != null">
+        t_email = #{record.tEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPhone != null">
+        t_phone = #{record.tPhone,jdbcType=CHAR},
+      </if>
+      <if test="record.tIsvip != null">
+        t_isVip = #{record.tIsvip,jdbcType=CHAR},
+      </if>
+      <if test="record.tImgurl != null">
+        t_imgUrl = #{record.tImgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update train
+    set id = #{record.id,jdbcType=INTEGER},
+      t_userName = #{record.tUsername,jdbcType=VARCHAR},
+      t_loginName = #{record.tLoginname,jdbcType=VARCHAR},
+      t_password = #{record.tPassword,jdbcType=VARCHAR},
+      t_sex = #{record.tSex,jdbcType=CHAR},
+      t_age = #{record.tAge,jdbcType=INTEGER},
+      t_address = #{record.tAddress,jdbcType=VARCHAR},
+      t_email = #{record.tEmail,jdbcType=VARCHAR},
+      t_phone = #{record.tPhone,jdbcType=CHAR},
+      t_isVip = #{record.tIsvip,jdbcType=CHAR},
+      t_imgUrl = #{record.tImgurl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.newlife.fitness.entity.Train">
+    update train
+    <set>
+      <if test="tUsername != null">
+        t_userName = #{tUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="tLoginname != null">
+        t_loginName = #{tLoginname,jdbcType=VARCHAR},
+      </if>
+      <if test="tPassword != null">
+        t_password = #{tPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        t_sex = #{tSex,jdbcType=CHAR},
+      </if>
+      <if test="tAge != null">
+        t_age = #{tAge,jdbcType=INTEGER},
+      </if>
+      <if test="tAddress != null">
+        t_address = #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tEmail != null">
+        t_email = #{tEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null">
+        t_phone = #{tPhone,jdbcType=CHAR},
+      </if>
+      <if test="tIsvip != null">
+        t_isVip = #{tIsvip,jdbcType=CHAR},
+      </if>
+      <if test="tImgurl != null">
+        t_imgUrl = #{tImgurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.newlife.fitness.entity.Train">
+    update train
+    set t_userName = #{tUsername,jdbcType=VARCHAR},
+      t_loginName = #{tLoginname,jdbcType=VARCHAR},
+      t_password = #{tPassword,jdbcType=VARCHAR},
+      t_sex = #{tSex,jdbcType=CHAR},
+      t_age = #{tAge,jdbcType=INTEGER},
+      t_address = #{tAddress,jdbcType=VARCHAR},
+      t_email = #{tEmail,jdbcType=VARCHAR},
+      t_phone = #{tPhone,jdbcType=CHAR},
+      t_isVip = #{tIsvip,jdbcType=CHAR},
+      t_imgUrl = #{tImgurl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
